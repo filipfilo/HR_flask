@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ employee.id }}</a>
+
+          <a class='btn btn-secondary btn-sm mt-1 mb-1' href="{{ url_for('update_employee', employee_id=employee.id) }}">Edit</a>
+          <button type="button" class="btn btn-danger btn-sm mt-1 mb-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+
+
+      </div>
+      <p class="article-content">First Name: {{ employee.first_name }}</p>
+      <p class="article-content">Last Name: {{ employee.last_name }}</p>
+      <p class="article-content">Date of Birth: {{ employee.date_of_birth }}</p>
+      <p class="article-content">Address: {{ employee.street_address }}</p>
+      <p class="article-content">Zipcode: {{ employee.zipcode }}</p>
+      <p class="article-content">State: {{ employee.state }}</p>
+      <p class="article-content">E-mail: {{ employee.email }}</p>
+      <p class="article-content">Contact Number: {{ employee.telephone_number }}</p>
+      <p class="article-content">Passport ID: {{ employee.national_id }}</p>
+      <p class="article-content">Citizenship: {{ employee.citizenship }}</p>
+      <p class="article-content">Contract Begin: {{ employee.contract_beginning }}</p>
+      <p class="article-content">Contract End: {{ employee.contract_end }}</p>
+      <p class="article-content">Contract Type: {{ employee.contract_type }}</p>
+      <p class="article-content">Department: {{ employee.department }}</p>
+      <p class="article-content">Job title: {{ employee.job_title }}</p>
+
+      <p class="article-content">Salary: {{ employee.salary }}</p>
+      <p class="article-content">Band: {{ employee.band }}</p>
+    </div>
+  </article>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Do you really want to delete <b>{{employee.id}}</b> ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+          <form action="{{url_for('delete_employee', employee_id=employee.id)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
